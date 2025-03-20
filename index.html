@@ -1,0 +1,77 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aseechar - Find Cheapest Products</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #2E1A47;
+      color: #ffffff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+      color: #E0B0FF;
+    }
+    input[type="text"] {
+      padding: 10px;
+      width: 300px;
+      border: none;
+      border-radius: 5px;
+      margin-bottom: 20px;
+      font-size: 1rem;
+    }
+    .buttons {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    button {
+      padding: 10px 15px;
+      font-size: 1rem;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      background-color: #5D3FD3;
+      color: white;
+      transition: background-color 0.3s ease;
+    }
+    button:hover {
+      background-color: #7B68EE;
+    }
+  </style>
+</head>
+<body>
+  <h1>Aseechar</h1>
+  <input type="text" id="productInput" placeholder="Search any product..." />
+  <div class="buttons">
+    <button onclick="searchProduct('amazon')">Amazon</button>
+    <button onclick="searchProduct('flipkart')">Flipkart</button>
+    <button onclick="searchProduct('jiomart')">JioMart</button>
+    <button onclick="searchProduct('myntra')">Myntra</button>
+  </div>
+
+  <script>
+    function searchProduct(site) {
+      const query = document.getElementById('productInput').value.trim();
+      if (!query) return alert('Please enter a product name!');
+      const encodedQuery = encodeURIComponent(query);
+      let url = '';
+      if (site === 'amazon') url = `https://www.amazon.in/s?k=${encodedQuery}`;
+      if (site === 'flipkart') url = `https://www.flipkart.com/search?q=${encodedQuery}`;
+      if (site === 'jiomart') url = `https://www.jiomart.com/catalogsearch/result?q=${encodedQuery}`;
+      if (site === 'myntra') url = `https://www.myntra.com/${encodedQuery}`;
+      window.open(url, '_blank');
+    }
+  </script>
+</body>
+</html>
